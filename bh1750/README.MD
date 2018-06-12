@@ -8,14 +8,15 @@ Only tested on the esp8266 micropython port.
 import machine
 from bh1750 import BH1750
 
-scl = machine.Pin(5)
-sda = machine.Pin(4)
-i2c = machine.I2C(scl,sda)
+scl_pin = machine.Pin(5)
+sda_pin = machine.Pin(4)
+i2c = machine.I2C(scl=scl_pin, sda=sda_pin)
 
-s = BH1750(i2c)
+sensor = BH1750(i2c)
 
 while True:
-    s.luminance(BH1750.ONCE_HIRES_1)
+    result = sensor.luminance(BH1750.ONCE_HIRES_1)
+    print(result)
 ```
 
 ## Address
